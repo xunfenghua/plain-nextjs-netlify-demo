@@ -39,7 +39,6 @@ DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=PRISMA_POSTG
 Run the following commands to set up your database and Prisma schema:
 
 ```bash
-# Using npm
 npx prisma migrate dev --name init
 ```
 
@@ -65,7 +64,6 @@ bun prisma migrate dev --name init
 Add initial data to your database:
 
 ```bash
-# Using npm
 npx prisma db seed
 ```
 
@@ -91,7 +89,6 @@ bun prisma db seed
 Start the development server:
 
 ```bash
-# Using npm
 npm run dev
 ```
 
