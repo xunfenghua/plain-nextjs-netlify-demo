@@ -6,7 +6,7 @@ export default async function Home() {
     orderBy: {
       createdAt: "desc",
     },
-    take: 4,
+    take: 6,
     include: {
       author: {
         select: {
