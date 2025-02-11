@@ -1,76 +1,109 @@
-import prisma from "@/lib/prisma";
+"use client";
+
+import { useSearchParams } from "next/navigation";
+import { useEffect, useState, Suspense } from "react";
 import Link from "next/link";
 
-interface PostsProps {
-  searchParams: { page?: string };
+interface Post {
+  id: number;
+  title: string;
+  content?: string;
+  createdAt: string;
+  author?: {
+    name: string;
+  };
 }
 
-export default async function Posts({ searchParams }: PostsProps) {
-  const page = parseInt(searchParams.page || "1");
-  const postsPerPage = 5;
-  const offset = (page - 1) * postsPerPage;
+function PostsList() {
+  const searchParams = useSearchParams();
+  const page = parseInt(searchParams.get("page") || "1");
 
-  // Fetch posts with pagination
-  const posts = await prisma.post.findMany({
-    skip: offset,
-    take: postsPerPage,
-    orderBy: {
-      createdAt: "desc",
-    },
-    include: {
-      author: {
-        select: {
-          name: true,
-        },
-      },
-    },
-  });
+  const [posts, setPosts] = useState<Post[]>([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // Fetch total post count to calculate pagination links
-  const totalPosts = await prisma.post.count();
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
+  useEffect(() => {
+    async function fetchPosts() {
+      setIsLoading(true);
+      try {
+        const res = await fetch(`/api/posts?page=${page}`);
+        if (!res.ok) {
+          throw new Error("Failed to fetch posts");
+        }
+        const data = await res.json();
+        setPosts(data.posts);
+        setTotalPages(data.totalPages);
+      } catch (error) {
+        console.error("Error fetching posts:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchPosts();
+  }, [page]);
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center space-x-2">
+        <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+        <p className="text-gray-600">Loading...</p>
+      </div>
+    );
+  }
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-start p-8">
-      <h1 className="text-4xl font-bold mb-8 text-[#333333]">Posts</h1>
-
-      <ul className="w-full max-w-4xl space-y-6">
-        {posts.map((post) => (
-          <li key={post.id} className="border p-4 rounded-lg shadow-sm">
-            <Link href={`/posts/${post.id}`} className="text-2xl font-semibold text-blue-600 hover:underline">
-              {post.title}
-            </Link>
-            <p className="text-sm text-gray-500">
-              by {post.author?.name || "Anonymous"}
-            </p>
-            <p className="text-xs text-gray-400">
-              {new Date(post.createdAt).toLocaleDateString("en-US", {
-                year: "numeric",
-                month: "long",
-                day: "numeric",
-              })}
-            </p>
-          </li>
-        ))}
-      </ul>
+    <>
+      {posts.length === 0 ? (
+        <p className="text-gray-600">No posts available.</p>
+      ) : (
+        <ul className="w-full max-w-4xl space-y-6">
+          {posts.map((post) => (
+            <li key={post.id} className="border p-4 rounded-lg shadow-sm">
+              <Link href={`/posts/${post.id}`} className="text-2xl font-semibold text-blue-600 hover:underline">
+                {post.title}
+              </Link>
+              <p className="text-sm text-gray-500">by {post.author?.name || "Anonymous"}</p>
+              <p className="text-xs text-gray-400">
+                {new Date(post.createdAt).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+              </p>
+            </li>
+          ))}
+        </ul>
+      )}
 
       {/* Pagination Controls */}
       <div className="flex justify-center space-x-4 mt-8">
         {page > 1 && (
           <Link href={`/posts?page=${page - 1}`}>
-            <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-              Previous
-            </button>
+            <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Previous</button>
           </Link>
         )}
         {page < totalPages && (
           <Link href={`/posts?page=${page + 1}`}>
-            <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">
-              Next
-            </button>
+            <button className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300">Next</button>
           </Link>
         )}
       </div>
-    </div>
+    </>
+  );
+}
+
+export default function PostsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="ml-3 text-gray-600">Loading page...</p>
+        </div>
+      }
+    >
+      <PostsList />
+    </Suspense>
   );
 }
