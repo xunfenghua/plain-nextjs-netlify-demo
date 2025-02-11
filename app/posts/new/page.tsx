@@ -40,20 +40,8 @@ export default function NewPost() {
       <h1 className="text-2xl font-bold mb-6">Create New Post</h1>
       <Form action={createPost} className="space-y-6">
         <div>
-          <label htmlFor="authorEmail" className="block text-lg mb-2">
-            Author
-          </label>
-          <input
-            type="text"
-            id="authorEmail"
-            name="authorEmail"
-            placeholder="Enter the email of the author here ..."
-            className="w-full px-4 py-2 border rounded-lg"
-          />
-        </div>
-        <div>
           <label htmlFor="title" className="block text-lg mb-2">
-            Title
+            Title (Required)
           </label>
           <input
             type="text"
@@ -72,6 +60,18 @@ export default function NewPost() {
             name="content"
             placeholder="Write your post content here ..."
             rows={6}
+            className="w-full px-4 py-2 border rounded-lg"
+          />
+        </div>
+        <div>
+          <label htmlFor="authorEmail" className="block text-lg mb-2">
+            Author
+          </label>
+          <input
+            type="text"
+            id="authorEmail"
+            name="authorEmail"
+            placeholder="Enter the email of the author here ..."
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
