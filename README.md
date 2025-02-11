@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js & Prisma Postgres starter
 
-## Getting Started
+This repository provides a boilerplate to quickly set up a Next.js application with [Prisma Postgres](https://www.prisma.io/postgres) and [Prisma ORM](https://www.prisma.io/orm), and deploy it to Netlify. It includes an easy setup process and example routes that demonstrate basic CRUD operations.
 
-First, run the development server:
+## Getting started
+
+Follow these steps to quickly set up the project and start using Prisma ORM with Next.js.
+
+### 1. Create a Prisma Postgres instance
+
+Create a Prisma Postgres database instance using [Prisma Data Platform](https://console.prisma.io):
+
+1. Navigate to [Prisma Data Platform](https://console.prisma.io).
+2. Click **New project** to create a new project.
+3. Enter a name for your project in the **Name** field.
+4. Inside the **Prisma Postgres®** section, click **Get started**.
+5. Choose a region close to your location from the **Region** dropdown.
+6. Click **Create project** to set up your database. This redirects you to the database setup page.
+7. In the **Set up database access** section, copy the `DATABASE_URL`. You will use this in the next steps.
+
+### 2. Setup your `.env` file
+
+You now need to configure your database connection via an environment variable.
+
+First, create an `.env` file:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+touch .env
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then update the `.env` file by replacing the existing `DATABASE_URL` value with the one you previously copied. It will look similar to this:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=PRISMA_POSTGRES_API_KEY"
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Migrate the database
 
-## Learn More
+Run the following commands to set up your database and Prisma schema:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Using npm
+npx prisma migrate dev --name init
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<details>
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+<summary>Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code></summary>
 
-## Deploy on Vercel
+```bash
+# Using yarn
+yarn prisma migrate dev --name init
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Using pnpm
+pnpm prisma migrate dev --name init
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# Using bun
+bun prisma migrate dev --name init
+```
+
+</details>
+
+### 4. Seed the database
+
+Add initial data to your database:
+
+```bash
+# Using npm
+npx prisma db seed
+```
+
+<details>
+
+<summary>Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code></summary>
+
+```bash
+# Using yarn
+yarn prisma db seed
+
+# Using pnpm
+pnpm prisma db seed
+
+# Using bun
+bun prisma db seed
+```
+
+</details>
+
+### 5. Run the app
+
+Start the development server:
+
+```bash
+# Using npm
+npm run dev
+```
+
+<details>
+
+<summary>Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code></summary>
+
+```bash
+# Using yarn
+yarn dev
+
+# Using pnpm
+pnpm run dev
+
+# Using bun
+bun run dev
+```
+
+</details>
+
+Once the server is running, visit `http://localhost:3000` to start using the app.
+
+## Deploy to Netlify
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/nikolasburk/plain-nextjs-netlify-demo)
+
+
+## Next steps
+
+- [Prisma ORM documentation](https://www.prisma.io/docs/orm)
+- [Prisma Client API reference](https://www.prisma.io/docs/orm/prisma-client)
+- [Join our Discord community](https://discord.com/invite/prisma)
+- [Follow us on Twitter](https://twitter.com/prisma)
