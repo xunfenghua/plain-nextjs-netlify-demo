@@ -4,12 +4,11 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && @netlify/next",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
-    "@netlify/next": "^1.4.9",
     "@netlify/plugin-nextjs": "^5.9.4",
     "next": "15.1.7",
     "react": "^19.0.0",

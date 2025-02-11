@@ -1,10 +1,20 @@
 [build]
   command = "npm run build"
   publish = ".next"
-  base = "/"
 
 [functions]
   directory = "netlify/functions"
 
-[build.environment]
-  NEXT_PRIVATE_TARGET = "server"
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# [build]
+#   command = "npm run build"
+#   publish = ".next"
+#   base = "/"
+
+# [functions]
+#   directory = "netlify/functions"
+
+# [build.environment]
+#   NEXT_PRIVATE_TARGET = "server"
