@@ -7,15 +7,28 @@ export default function NewPost() {
   async function createPost(formData: FormData) {
     "use server";
 
+    const authorEmail = (formData.get("authorEmail") as string) || undefined;
     const title = formData.get("title") as string;
     const content = formData.get("content") as string;
 
+    const postData = authorEmail
+      ? {
+          title,
+          content,
+          author: {
+            connect: {
+              email: authorEmail,
+            },
+          },
+        }
+      : {
+          title,
+          content,
+        };
+
+    console.log(`authorEmail`, authorEmail);
     await prisma.post.create({
-      data: {
-        title,
-        content,
-        authorId: 1,
-      },
+      data: postData,
     });
 
     revalidatePath("/posts");
@@ -27,6 +40,18 @@ export default function NewPost() {
       <h1 className="text-2xl font-bold mb-6">Create New Post</h1>
       <Form action={createPost} className="space-y-6">
         <div>
+          <label htmlFor="authorEmail" className="block text-lg mb-2">
+            Author
+          </label>
+          <input
+            type="text"
+            id="authorEmail"
+            name="authorEmail"
+            placeholder="Enter the email of the author here ..."
+            className="w-full px-4 py-2 border rounded-lg"
+          />
+        </div>
+        <div>
           <label htmlFor="title" className="block text-lg mb-2">
             Title
           </label>
@@ -34,7 +59,7 @@ export default function NewPost() {
             type="text"
             id="title"
             name="title"
-            placeholder="Enter your post title"
+            placeholder="Enter your post title ..."
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
@@ -45,15 +70,12 @@ export default function NewPost() {
           <textarea
             id="content"
             name="content"
-            placeholder="Write your post content here..."
+            placeholder="Write your post content here ..."
             rows={6}
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
-        <button
-          type="submit"
-          className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600"
-        >
+        <button type="submit" className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600">
           Create Post
         </button>
       </Form>
