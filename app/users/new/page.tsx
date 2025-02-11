@@ -21,18 +21,22 @@ export default function NewUser() {
       <h1 className="text-3xl font-bold mb-6">Create New User</h1>
       <Form action={createUser} className="space-y-6">
         <div>
-          <label htmlFor="name" className="block text-lg mb-2">Name</label>
+          <label htmlFor="name" className="block text-lg font-medium mb-2">Name</label>
           <input
             type="text"
             id="name"
             name="name"
-            required
             placeholder="Enter user name ..."
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
         <div>
-          <label htmlFor="email" className="block text-lg mb-2">Email (Required)</label>
+          <label htmlFor="email" className="flex text-lg font-medium mb-2 items-center">
+            Email 
+            <span className="ml-2 px-2 py-1 text-xs font-semibold text-white bg-gray-500 rounded-lg">
+              Required
+            </span>
+          </label>
           <input
             type="email"
             id="email"

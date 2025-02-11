@@ -26,7 +26,6 @@ export default function NewPost() {
           content,
         };
 
-    console.log(`authorEmail`, authorEmail);
     await prisma.post.create({
       data: postData,
     });
@@ -40,21 +39,23 @@ export default function NewPost() {
       <h1 className="text-2xl font-bold mb-6">Create New Post</h1>
       <Form action={createPost} className="space-y-6">
         <div>
-          <label htmlFor="title" className="block text-lg mb-2">
-            Title (Required)
+          <label htmlFor="title" className="flex text-lg font-medium mb-2 items-center">
+            Title 
+            <span className="ml-2 px-2 py-1 text-xs font-semibold text-white bg-gray-500 rounded-lg">
+              Required
+            </span>
           </label>
           <input
             type="text"
             id="title"
             name="title"
+            required
             placeholder="Enter your post title ..."
             className="w-full px-4 py-2 border rounded-lg"
           />
         </div>
         <div>
-          <label htmlFor="content" className="block text-lg mb-2">
-            Content
-          </label>
+          <label htmlFor="content" className="block text-lg font-medium mb-2">Content</label>
           <textarea
             id="content"
             name="content"
@@ -64,9 +65,7 @@ export default function NewPost() {
           />
         </div>
         <div>
-          <label htmlFor="authorEmail" className="block text-lg mb-2">
-            Author
-          </label>
+          <label htmlFor="authorEmail" className="block text-lg font-medium mb-2">Author</label>
           <input
             type="text"
             id="authorEmail"
