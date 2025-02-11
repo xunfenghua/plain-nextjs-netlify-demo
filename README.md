@@ -2,6 +2,8 @@
 
 This repository provides a boilerplate to quickly set up a Next.js application with [Prisma Postgres](https://www.prisma.io/postgres) and [Prisma ORM](https://www.prisma.io/orm), and deploy it to Netlify. It includes an easy setup process and example routes that demonstrate basic CRUD operations.
 
+For the deployment on Netlify, you can use the [Prisma Postgres extension](https://www.netlify.com/integrations/prisma) for Netlify.
+
 ## Getting started
 
 Follow these steps to quickly set up the project and start using Prisma ORM with Next.js.
@@ -113,8 +115,9 @@ Once the server is running, visit `http://localhost:3000` to start using the app
 
 ## Deploy to Netlify
 
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/nikolasburk/plain-nextjs-netlify-demo)
+For the deployment on Netlify, you can use the [Prisma Postgres extension](https://www.netlify.com/integrations/prisma) for Netlify.
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/nikolasburk/plain-nextjs-netlify-demo)
 
 ## Next steps
 
