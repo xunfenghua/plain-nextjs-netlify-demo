@@ -1,65 +1,38 @@
-"use client";
-
-import { useSearchParams } from "next/navigation";
-import { useEffect, useState, Suspense } from "react";
+import prisma from "@/lib/prisma";
 import Link from "next/link";
 
-interface Post {
-  id: number;
-  title: string;
-  content?: string;
-  createdAt: string;
-  author?: {
-    name: string;
-  };
+interface PostsPageProps {
+  searchParams: { page?: string };
 }
 
-function PostsList() {
-  const searchParams = useSearchParams();
-  const page = parseInt(searchParams.get("page") || "1");
+export default async function PostsPage({ searchParams }: PostsPageProps) {
+  const page = parseInt(searchParams.page || "1");
+  const postsPerPage = 5;
+  const offset = (page - 1) * postsPerPage;
 
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [isLoading, setIsLoading] = useState(true);
+  // Fetch posts and total count
+  const [posts, totalPosts] = await Promise.all([
+    prisma.post.findMany({
+      skip: offset,
+      take: postsPerPage,
+      orderBy: { createdAt: "desc" },
+      include: { author: { select: { name: true } } },
+    }),
+    prisma.post.count(),
+  ]);
 
-  useEffect(() => {
-    async function fetchPosts() {
-      setIsLoading(true);
-      try {
-        const res = await fetch(`/api/posts?page=${page}`);
-        if (!res.ok) {
-          throw new Error("Failed to fetch posts");
-        }
-        const data = await res.json();
-        setPosts(data.posts);
-        setTotalPages(data.totalPages);
-      } catch (error) {
-        console.error("Error fetching posts:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    fetchPosts();
-  }, [page]);
-
-  if (isLoading) {
-    return (
-      <div className="flex items-center justify-center space-x-2">
-        <div className="w-6 h-6 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-        <p className="text-gray-600">Loading...</p>
-      </div>
-    );
-  }
+  const totalPages = Math.ceil(totalPosts / postsPerPage);
 
   return (
-    <>
+    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-start p-8">
+      <h1 className="text-4xl font-bold mb-8 text-[#333333]">Posts</h1>
+
       {posts.length === 0 ? (
         <p className="text-gray-600">No posts available.</p>
       ) : (
-        <ul className="w-full max-w-4xl space-y-6">
+        <ul className="space-y-6 w-full max-w-4xl mx-auto">
           {posts.map((post) => (
-            <li key={post.id} className="border p-4 rounded-lg shadow-sm">
+            <li key={post.id} className="border p-6 rounded-lg shadow-md bg-white">
               <Link href={`/posts/${post.id}`} className="text-2xl font-semibold text-blue-600 hover:underline">
                 {post.title}
               </Link>
@@ -89,21 +62,6 @@ function PostsList() {
           </Link>
         )}
       </div>
-    </>
-  );
-}
-
-export default function PostsPage() {
-  return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="ml-3 text-gray-600">Loading page...</p>
-        </div>
-      }
-    >
-      <PostsList />
-    </Suspense>
+    </div>
   );
 }
