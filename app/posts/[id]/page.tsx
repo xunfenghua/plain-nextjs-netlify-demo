@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic"; // This disables SSG and ISR
+
 import prisma from "@/lib/prisma";
 import { notFound, redirect } from "next/navigation";
 
