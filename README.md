@@ -1,6 +1,6 @@
 # Next.js & Prisma Postgres starter
 
-This repository provides a boilerplate to quickly set up a Next.js application with [Prisma Postgres](https://www.prisma.io/postgres) and [Prisma ORM](https://www.prisma.io/orm), and deploy it to Netlify. It includes an easy setup process and example routes that demonstrate basic CRUD operations.
+This repository provides a boilerplate to quickly set up a Next.js demo application with [Prisma Postgres](https://www.prisma.io/postgres) and [Prisma ORM](https://www.prisma.io/orm), and deploy it to Netlify. It includes an easy setup process and example routes that demonstrate basic CRUD operations against the database.
 
 For the deployment on Netlify, you can use the [Prisma Postgres extension](https://www.netlify.com/integrations/prisma) for Netlify.
 
@@ -8,7 +8,7 @@ For the deployment on Netlify, you can use the [Prisma Postgres extension](https
 
 ## Features
 
-- Fullstack Next.js app with Server Actions & API routes
+- Next.js 15 app with App Router, Server Actions & API Routes
 - Data modeling, database migrations, seeding & querying
 - CRUD operations to create, view and delete blog posts
 - Pagination, filtering & relations queries
