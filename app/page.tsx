@@ -5,11 +5,10 @@ import Link from "next/link";
 import { redirect } from "next/navigation";
 
 export default async function Home() {
-
-  if (!process.env.DATABASE_URL) {
+  if (!process.env.DATABASE_URL || process.env.DATABASE_URL === "postgresql://user:password@localhost:5432/db") {
     redirect("/setup");
   }
-  
+
   const posts = await prisma.post.findMany({
     orderBy: {
       createdAt: "desc",
@@ -31,12 +30,8 @@ export default async function Home() {
         {posts.map((post) => (
           <Link key={post.id} href={`/posts/${post.id}`} className="group">
             <div className="border rounded-lg shadow-md bg-white p-6 hover:shadow-lg transition-shadow duration-300">
-              <h2 className="text-2xl font-semibold text-blue-600 group-hover:underline mb-2">
-                {post.title}
-              </h2>
-              <p className="text-sm text-gray-500">
-                by {post.author ? post.author.name : "Anonymous"}
-              </p>
+              <h2 className="text-2xl font-semibold text-blue-600 group-hover:underline mb-2">{post.title}</h2>
+              <p className="text-sm text-gray-500">by {post.author ? post.author.name : "Anonymous"}</p>
               <p className="text-xs text-gray-400 mb-4">
                 {new Date(post.createdAt).toLocaleDateString("en-US", {
                   year: "numeric",
@@ -45,9 +40,7 @@ export default async function Home() {
                 })}
               </p>
               <div className="relative">
-                <p className="text-gray-700 leading-relaxed line-clamp-2">
-                  {post.content || "No content available."}
-                </p>
+                <p className="text-gray-700 leading-relaxed line-clamp-2">{post.content || "No content available."}</p>
                 <div className="absolute bottom-0 left-0 w-full h-12 bg-gradient-to-t from-gray-50 to-transparent" />
               </div>
             </div>
