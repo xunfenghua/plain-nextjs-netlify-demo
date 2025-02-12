@@ -1,8 +1,8 @@
-## Usage
+# Usage
 
 Follow these steps to quickly set up the project and start using Prisma ORM with Next.js.
 
-### 1. Create a Prisma Postgres instance
+## 1. Create a Prisma Postgres instance
 
 Create a Prisma Postgres database instance using [Prisma Data Platform](https://console.prisma.io):
 
@@ -14,7 +14,7 @@ Create a Prisma Postgres database instance using [Prisma Data Platform](https://
 6. Click **Create project** to set up your database. This redirects you to the database setup page.
 7. In the **Set up database access** section, copy the `DATABASE_URL`. You will use this in the next steps.
 
-### 2. Setup your `.env` file
+## 2. Setup your `.env` file
 
 You now need to configure your database connection via an environment variable.
 
@@ -30,7 +30,7 @@ Then update the `.env` file by replacing the existing `DATABASE_URL` value with 
 DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=PRISMA_POSTGRES_API_KEY"
 ```
 
-### 3. Migrate the database
+## 3. Migrate the database
 
 Run the following commands to set up your database and Prisma schema:
 
@@ -55,7 +55,7 @@ bun prisma migrate dev --name init
 
 </details>
 
-### 4. Seed the database
+## 4. Seed the database
 
 Add initial data to your database:
 
@@ -80,7 +80,7 @@ bun prisma db seed
 
 </details>
 
-### 5. Run the app
+## 5. Run the app
 
 Start the development server:
 
@@ -107,7 +107,7 @@ bun run dev
 
 Once the server is running, visit `http://localhost:3000` to start using the app.
 
-## Deploy to Netlify
+## 6. Deploy to Netlify
 
 For the deployment on Netlify, you can use the [Prisma Postgres extension](https://www.netlify.com/integrations/prisma) for Netlify.
 
