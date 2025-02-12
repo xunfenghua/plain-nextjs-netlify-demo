@@ -2,8 +2,14 @@ export const dynamic = "force-dynamic"; // This disables SSG and ISR
 
 import prisma from "@/lib/prisma";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 export default async function Home() {
+
+  if (!process.env.DATABASE_URL) {
+    redirect("/setup");
+  }
+  
   const posts = await prisma.post.findMany({
     orderBy: {
       createdAt: "desc",
