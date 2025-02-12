@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "DATABASE_URL='postgresql://user:password@localhost:5432/db' npx prisma generate --no-engine"
   },
   "dependencies": {
     "@prisma/extension-accelerate": "^1.2.1",
