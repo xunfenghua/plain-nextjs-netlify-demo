@@ -17,7 +17,7 @@ If you want to go further, check out our [Next.js app with Authentication](https
 
 ## Getting started
 
-Follow these steps in [USAGE.md](./USAGE.md) to set up this starter template.
+Follow the steps in [USAGE.md](./USAGE.md) to set up this starter template, connect it with Prisma Postgres and deploy to Netlify.
 
 ## Next steps
 
