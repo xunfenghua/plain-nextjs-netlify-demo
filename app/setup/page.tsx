@@ -73,15 +73,6 @@ export default function SetupPage() {
             <pre className="mt-4 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">
               npx prisma migrate dev --name init
             </pre>
-            <details className="mt-4">
-              <summary className="cursor-pointer text-blue-600 hover:underline">
-                Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code>
-              </summary>
-              <pre className="mt-2 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">
-                # Using yarn yarn prisma migrate dev --name init # Using pnpm pnpm prisma migrate dev --name init #
-                Using bun bun prisma migrate dev --name init
-              </pre>
-            </details>
           </div>
 
           {/* Step 4 */}
@@ -89,14 +80,6 @@ export default function SetupPage() {
             <h2 className="text-2xl font-semibold text-gray-900">4. Seed the database</h2>
             <p className="text-gray-700 mt-2">Add initial data to your database:</p>
             <pre className="mt-4 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">npx prisma db seed</pre>
-            <details className="mt-4">
-              <summary className="cursor-pointer text-blue-600 hover:underline">
-                Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code>
-              </summary>
-              <pre className="mt-2 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">
-                # Using yarn yarn prisma db seed # Using pnpm pnpm prisma db seed # Using bun bun prisma db seed
-              </pre>
-            </details>
           </div>
 
           {/* Step 5 */}
@@ -104,14 +87,6 @@ export default function SetupPage() {
             <h2 className="text-2xl font-semibold text-gray-900">5. Run the app</h2>
             <p className="text-gray-700 mt-2">Start the development server:</p>
             <pre className="mt-4 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">npm run dev</pre>
-            <details className="mt-4">
-              <summary className="cursor-pointer text-blue-600 hover:underline">
-                Expand for <code>yarn</code>, <code>pnpm</code> or <code>bun</code>
-              </summary>
-              <pre className="mt-2 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">
-                # Using yarn yarn dev # Using pnpm pnpm run dev # Using bun bun run dev
-              </pre>
-            </details>
             <p className="text-gray-700 mt-4">
               Once the server is running, visit <code>http://localhost:3000</code> to start using the app.
             </p>
