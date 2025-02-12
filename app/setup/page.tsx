@@ -62,7 +62,7 @@ export default function SetupPage() {
               Then, add your database URL inside the <strong>.env</strong> file:
             </p>
             <pre className="mt-4 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">
-              DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=PRISMA_POSTGRES_API_KEY"
+              DATABASE_URL=prisma+postgres://accelerate.prisma-data.net/?api_key=PRISMA_POSTGRES_API_KEY
             </pre>
           </div>
 
@@ -135,7 +135,6 @@ export default function SetupPage() {
               href="https://app.netlify.com/start/deploy?repository=https://github.com/nikolasburk/plain-nextjs-netlify-demo"
               target="_blank"
             >
-              <img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify" className="mt-4" />
             </a>
           </div>
 
