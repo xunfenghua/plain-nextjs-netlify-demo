@@ -9,7 +9,7 @@ Create a Prisma Postgres database instance using [Prisma Data Platform](https://
 1. Navigate to [Prisma Data Platform](https://console.prisma.io).
 2. Click **New project** to create a new project.
 3. Enter a name for your project in the **Name** field.
-4. Inside the **Prisma Postgres®** section, click **Get started**.
+4. Inside the **Prisma Postgres** section, click **Get started**.
 5. Choose a region close to your location from the **Region** dropdown.
 6. Click **Create project** to set up your database. This redirects you to the database setup page.
 7. In the **Set up database access** section, copy the `DATABASE_URL`. You will use this in the next steps.
