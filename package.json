@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "[[ -n \"$DATABASE_URL\" ]] && echo 'DATABASE_URL is set, running command...' && npx prisma generate --no-engine || echo 'DATABASE_URL is not set, skipping...'"
+    "postinstall": "DATABASE_URL='postgresql://user:password@localhost:5432/db' npx prisma generate --no-engine"
   },
   "dependencies": {
     "@prisma/extension-accelerate": "^1.2.1",
