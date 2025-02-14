@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "DATABASE_URL='prisma+postgres://accelerate.prisma-data.net/?api_key=API_KEY' next build",
+    "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "DATABASE_URL='prisma+postgres://accelerate.prisma-data.net/?api_key=API_KEY' npx prisma generate --no-engine"
+    "postinstall": "npx prisma generate --no-engine"
   },
   "dependencies": {
     "@prisma/extension-accelerate": "^1.2.1",
