@@ -112,7 +112,7 @@ export default function SetupPage() {
 
           {/* Step 4 */}
           <div className="mt-6">
-            <h2 className="text-2xl font-semibold text-gray-900">5. Re-deploy the site in Netlify</h2>
+            <h2 className="text-2xl font-semibold text-gray-900">4. Re-deploy the site in Netlify</h2>
             <p className="text-gray-700 mt-2">
               Your site is now fully configured to load data from the Prisma Postgres database you just created, the
               last thing you need to do is re-deploy the site via the Netlify Dashboard.
