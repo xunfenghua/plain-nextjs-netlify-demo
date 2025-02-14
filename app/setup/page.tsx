@@ -14,13 +14,7 @@ export default function SetupPage() {
           {/* Step 1 */}
           <div className="mt-6">
             <h2 className="text-2xl font-semibold text-gray-900">1. Create a Prisma Postgres instance</h2>
-            <p className="text-gray-700 mt-2">
-              Create a Prisma Postgres database instance using
-              <a href="https://console.prisma.io" className="text-blue-600 hover:underline" target="_blank">
-                Prisma Data Platform
-              </a>
-              .
-            </p>
+            <p className="text-gray-700 mt-2">Create a new Prisma Postgres database instance using:</p>
             <ol className="list-decimal pl-6 mt-2 space-y-1 text-gray-700">
               <li>
                 Go to{" "}
@@ -52,11 +46,11 @@ export default function SetupPage() {
           <div className="mt-6">
             <h2 className="text-2xl font-semibold text-gray-900">2. Add the Prisma Integration Token to Netlify</h2>
             <p className="text-gray-700 mt-2">
-              When you create the site with this template, you already installed the{" "}
+              When you created the site with this template, you already installed the{" "}
               <a href="" target="_blank">
                 Prisma Postgres extension
               </a>
-              . Next, you need to copy Prisma s Integration Token into the extension.
+              . Next, you need to copy Prisma&apos;s Integration Token into the extension:
             </p>
             <ol className="list-decimal pl-6 mt-2 space-y-1 text-gray-700">
               <li>
@@ -89,7 +83,7 @@ export default function SetupPage() {
               3. Connect Netlify site with Prisma Postgres instance
             </h2>
             <p className="text-gray-700 mt-2">
-              In this step, you will connect your Netlify site with the Prisma Postgres instance you just created.
+              In this step, you will connect your Netlify site with the Prisma Postgres instance you just created:
             </p>
             <ol className="list-decimal pl-6 mt-2 space-y-1 text-gray-700">
               <li>
@@ -142,7 +136,7 @@ export default function SetupPage() {
             </p>
             <pre className="mt-4 p-4 bg-gray-900 text-white text-sm rounded-lg overflow-auto">
               # .env <br></br>
-              DATABASE_URL="prisma+postgres://accelerate.prisma-data.net/?api_key=ey..."
+              DATABASE_URL=&quot;prisma+postgres://accelerate.prisma-data.net/?api_key=ey...&quot;
             </pre>
             <p className="text-gray-700 mt-2">
               You can now migrate your database and apply the schema defined in <code>prisma/schema.prisma</code> with
@@ -181,7 +175,6 @@ export default function SetupPage() {
               Once the deployment is ready, you can click on <strong>Open production deploy</strong> and use the app 🎉
             </p>
           </div>
-
         </div>
       </div>
     </div>
