@@ -1,7 +1,16 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
+// next.config.js
+module.exports = {
+  async headers() {
+    return [
+      {
+        source: "/admin/(.*)",
+        headers: [
+          {
+            key: "Content-Type",
+            value: "text/html",
+          },
+        ],
+      },
+    ];
+  },
 };
-
-export default nextConfig;
